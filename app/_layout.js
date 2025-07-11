@@ -11,7 +11,14 @@ export default function RootLayout(){
         <Stack.Screen
         name="about"
         options={{
-            title: 'Holi'            
+            title: 'Acerca de..',
+            //headerShown: false       
+        }}        
+        />
+        <Stack.Screen 
+          name="[id]" 
+          options={{
+            //headerShown: false
         }}
         />
       </Stack>  

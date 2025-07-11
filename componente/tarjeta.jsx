@@ -1,17 +1,34 @@
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity  } from "react-native";
+import { router } from 'expo-router';
+
 export function Tarjeta({ item }) {
+
+   // Función para extraer el ID del episodio de la URL
+    const getEpisodeId = (episodeUrl) => {
+        const parts = episodeUrl.split('/');
+        return parts[parts.length - 1];
+    };
+
+    // Función para manejar el toque en la imagen
+    const handleImagePress = () => {
+        if (item.episode && item.episode.length > 0) {
+            const firstEpisodeUrl = item.episode[0];
+            const episodeId = getEpisodeId(firstEpisodeUrl);
+            router.push(`/${episodeId}`);
+        }
+    };
+
   return (
     <View style={styles.container}>      
         <View key={item.id} style={styles.card}>
+          <TouchableOpacity onPress={handleImagePress}>                     
+              <Image source={{ uri: item.image }} style={styles.imagenp} resizeMode="cover"/>
+          </TouchableOpacity>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.status}>{item.status}</Text>
           <Text style={styles.species}>{item.species}</Text>
-          <Text style={styles.gender}>{item.gender}</Text>
-          <Image
-            source={{ uri: item.image }}
-            style={styles.imagenp}
-            resizeMode="cover"
-          />
+          <Text style={styles.gender}>{item.gender}</Text>   
+          <Text style={styles.episodeHint}>Toca la imagen para ver el primer episodio</Text>       
         </View>      
     </View>
   );
@@ -80,5 +97,13 @@ const styles = StyleSheet.create({
   logoAlt: {
     backgroundColor: 'violet',    
     padding: 20
+  }
+  ,
+  episodeHint: {
+    fontSize: 12,
+    color: '#ccc',
+    fontStyle: 'italic',
+    marginTop: 8,
+    textAlign: 'center',
   }
 });
