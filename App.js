@@ -1,23 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { use, useEffect, useState } from "react";
-import { Pressable, TouchableHighlight } from "react-native";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import { Button } from "react-native-web";
-import icon from "./assets/splash-icon.png";
-import { getPersonajes } from "./lib/rickyMorty";
+import { StyleSheet, View } from "react-native";
+//import icon from "./assets/splash-icon.png";
 import Logo from "./componente/logo";
-import Main from "./componente/logo";
+import { Main } from "./componente/main";
 
 
 export default function App() {
-  const [dato, setDato] = useState("");
-  const ejecutar = () => {
-    setDato("Nuevo Dato");
-  };
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" />      
       <Logo style={styles.logo}></Logo>
       <Main/>
     </View>

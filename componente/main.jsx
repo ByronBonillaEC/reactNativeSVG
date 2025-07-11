@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Tarjeta  from "./tarjeta";
-import { StyleSheet, ScrollView } from "react-native";
-import { getPersonajes } from "./lib/rickyMorty";
+import { Tarjeta } from "./tarjeta";
+import { ScrollView } from "react-native";
 import { ActivityIndicator, FlatList } from "react-native-web";
+import { getPersonajes } from "../lib/rickyMorty"
 
 export function Main() {
 
   const [personajes, setPersonajes] = useState([]);
-  useEffect(() => {
+  useEffect(() => {    
     getPersonajes().then((data) => {
       setPersonajes(data);
       console.log("personajes", personajes);
@@ -15,8 +15,8 @@ export function Main() {
   }, []);
 
   return (
-    <>
-        {/*}
+    <>   
+        {/*     
         <ScrollView>
             {personajes.map((item) => (
             <Tarjeta item={item} key={item.id} />
@@ -24,7 +24,7 @@ export function Main() {
         </ScrollView>
         */}
 
-        {personajes.length() === 0 ? (
+        {personajes.length === 0 ? (
             <ActivityIndicator size={"large"}/>
         ) : (
             <FlatList
@@ -34,9 +34,8 @@ export function Main() {
                 ({item, index}) => (
                     <Tarjeta item={item} index={index}/>
                 )
-            }            
-        )
-        }
+            }/>
+        )}
         
     </>
   );
